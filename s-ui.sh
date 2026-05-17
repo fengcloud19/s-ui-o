@@ -125,7 +125,7 @@ uninstall() {
     rm /usr/local/s-ui/ -rf
 
     echo ""
-    echo -e "卸载成功。如果要删除此脚本，请在退出脚本后运行 ${green}rm /usr/local/s-ui -f${plain}。"
+    echo -e "卸载成功。如果要删除此脚本，请在退出脚本后运行 ${green}rm /usr/bin/s-ui -f${plain}。"
     echo ""
 
     if [[ $# == 0 ]]; then
@@ -297,7 +297,7 @@ show_log() {
 }
 
 update_shell() {
-    wget -O /usr/bin/s-ui -N --no-check-certificate https://github.com/fengcloud19/s-ui/raw/main/s-ui.sh
+    wget -O /usr/bin/s-ui -N --no-check-certificate https://raw.githubusercontent.com/fengcloud19/s-ui/main/s-ui.sh
     if [[ $? != 0 ]]; then
         echo ""
         LOGE "下载脚本失败，请检查当前机器是否可以连接 Github"
@@ -545,7 +545,7 @@ ssl_cert_issue() {
     LOGD "你的域名是：${domain}，正在检查..."
     local currentCert=$(~/.acme.sh/acme.sh --list | tail -1 | awk '{print $1}')
 
-    if [ ${currentCert} == ${domain} ]; then
+    if [ "${currentCert}" == "${domain}" ]; then
         local certInfo=$(~/.acme.sh/acme.sh --list)
         LOGE "系统中已存在证书，不能重复签发，当前证书详情："
         LOGI "$certInfo"
@@ -583,7 +583,7 @@ ssl_cert_issue() {
 
     if [ $? -ne 0 ]; then
         LOGE "安装证书失败，退出"
-        rm -rf ~/.acme.sh/${domain}
+        rm -rf ~/.acme.sh/${domain} ~/.acme.sh/${domain}_ecc
         exit 1
     else
         LOGI "安装证书成功，正在启用自动续签..."
