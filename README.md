@@ -45,9 +45,12 @@ bash <(curl -Ls https://raw.githubusercontent.com/fengcloud19/s-ui/main/install.
 3. 以管理员身份运行 `install-windows.bat`。
 4. 按照安装向导操作。
 
-## 安装旧版本
+## 下载安装
 
-**步骤 1：** 如果要安装指定旧版本，请在安装命令末尾追加带 `v` 的版本标签。例如版本 `v1.0.0`：
+**步骤 1：** 
+```sh
+wget -q https://raw.githubusercontent.com/fengcloud19/s-ui/main/s-ui.sh
+```
 
 
 ## 手动安装
